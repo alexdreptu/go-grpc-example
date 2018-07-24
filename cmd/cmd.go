@@ -1,8 +1,8 @@
 package cmd
 
 import (
+	"github.com/alexdreptu/go-grpc-example/api"
 	"github.com/alexdreptu/go-grpc-example/config"
-	"github.com/davecgh/go-spew/spew"
 	"github.com/spf13/cobra"
 )
 
@@ -25,9 +25,7 @@ var serverStartCmd = &cobra.Command{
 			return err
 		}
 
-		spew.Dump(conf)
-
-		return nil
+		return api.New(conf).Start()
 	},
 }
 
