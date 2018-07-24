@@ -1,0 +1,10 @@
+[server]
+addr = "localhost"
+port = 8080
+
+[database]
+addr = "localhost"
+port = 5432
+name = "services"
+user = "alectic" # in config file for testing only
+pass = "testpwd123" # in config file for testing only

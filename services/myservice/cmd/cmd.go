@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/alexdreptu/go-grpc-example/services/myservice/config"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +20,13 @@ var serverStartCmd = &cobra.Command{
 	Use:   "start",
 	Short: "runs the server",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		conf, err := config.Read(cmd)
+		if err != nil {
+			return err
+		}
+
+		spew.Dump(conf) // for debugging purposes
+
 		return nil
 	},
 }
