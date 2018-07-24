@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"github.com/alexdreptu/go-grpc-example/services/myservice/config"
+	"github.com/alexdreptu/go-grpc-example/services/myservice/server"
 	"github.com/alexdreptu/go-grpc-example/services/myservice/storage"
-	"github.com/davecgh/go-spew/spew"
 	"github.com/spf13/cobra"
+	"go.uber.org/zap"
 )
 
 var RootCmd = &cobra.Command{
@@ -26,15 +27,28 @@ var serverStartCmd = &cobra.Command{
 			return err
 		}
 
-		spew.Dump(conf) // for debugging purposes
-
 		conn, err := storage.New(conf)
 		if err != nil {
 			return err
 		}
 		defer conn.Close()
 
-		return nil
+		s, err := server.New(conf, conn)
+		if err != nil {
+			return err
+		}
+
+		s.Log.Info("Starting server",
+			zap.String("addr", conf.Srv.Addr),
+			zap.Int("port", conf.Srv.Port),
+			zap.String("dbhost", conf.DB.Addr),
+			zap.Int("dbport", conf.DB.Port),
+			zap.String("dbname", conf.DB.Name),
+			zap.String("dbuser", conf.DB.User),
+			zap.String("dbpass", conf.DB.Pass))
+		defer s.Log.Sync()
+
+		return s.Start()
 	},
 }
 
