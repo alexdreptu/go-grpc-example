@@ -1,0 +1,7 @@
+[server]
+addr = "localhost"
+port = 8000
+
+[myservice]
+addr = "localhost"
+port = 8001
