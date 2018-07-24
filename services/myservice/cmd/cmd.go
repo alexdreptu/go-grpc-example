@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/alexdreptu/go-grpc-example/services/myservice/config"
+	"github.com/alexdreptu/go-grpc-example/services/myservice/storage"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/spf13/cobra"
 )
@@ -26,6 +27,12 @@ var serverStartCmd = &cobra.Command{
 		}
 
 		spew.Dump(conf) // for debugging purposes
+
+		conn, err := storage.New(conf)
+		if err != nil {
+			return err
+		}
+		defer conn.Close()
 
 		return nil
 	},
