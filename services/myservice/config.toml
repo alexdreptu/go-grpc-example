@@ -1,6 +1,6 @@
 [server]
 addr = "localhost"
-port = 8081
+port = 8001
 
 [database]
 addr = "localhost"
