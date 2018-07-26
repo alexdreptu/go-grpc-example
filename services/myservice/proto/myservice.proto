@@ -6,9 +6,28 @@ package myservicepb;
 
 service MyService {
     rpc AddData(AddDataRequest) returns (google.protobuf.Empty) {}
+    rpc GetData(GetDataRequest) returns (GetDataResponse) {}
 }
 
 message AddDataRequest {
+    Data data = 1;
+}
+
+message GetDataRequest {
+    Query data = 1;
+}
+
+message GetDataResponse {
+    Data data = 1;
+}
+
+message Query {
+    string server_ip = 1;
+    string client_ip = 2;
+    map<string, string> metadata = 3;
+}
+
+message Data {
     string server_ip = 1;
     string client_ip = 2;
     map<string, string> metadata = 3;

@@ -25,20 +25,17 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type AddDataRequest struct {
-	ServerIp             string            `protobuf:"bytes,1,opt,name=server_ip,json=serverIp,proto3" json:"server_ip,omitempty"`
-	ClientIp             string            `protobuf:"bytes,2,opt,name=client_ip,json=clientIp,proto3" json:"client_ip,omitempty"`
-	Metadata             map[string]string `protobuf:"bytes,3,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	Msg                  string            `protobuf:"bytes,4,opt,name=msg,proto3" json:"msg,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
+	Data                 *Data    `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *AddDataRequest) Reset()         { *m = AddDataRequest{} }
 func (m *AddDataRequest) String() string { return proto.CompactTextString(m) }
 func (*AddDataRequest) ProtoMessage()    {}
 func (*AddDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_myservice_90031cc0239956c8, []int{0}
+	return fileDescriptor_myservice_5f76e43bfab2b76a, []int{0}
 }
 func (m *AddDataRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AddDataRequest.Unmarshal(m, b)
@@ -58,28 +55,199 @@ func (m *AddDataRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_AddDataRequest proto.InternalMessageInfo
 
-func (m *AddDataRequest) GetServerIp() string {
+func (m *AddDataRequest) GetData() *Data {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+type GetDataRequest struct {
+	Data                 *Query   `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetDataRequest) Reset()         { *m = GetDataRequest{} }
+func (m *GetDataRequest) String() string { return proto.CompactTextString(m) }
+func (*GetDataRequest) ProtoMessage()    {}
+func (*GetDataRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_myservice_5f76e43bfab2b76a, []int{1}
+}
+func (m *GetDataRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetDataRequest.Unmarshal(m, b)
+}
+func (m *GetDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetDataRequest.Marshal(b, m, deterministic)
+}
+func (dst *GetDataRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetDataRequest.Merge(dst, src)
+}
+func (m *GetDataRequest) XXX_Size() int {
+	return xxx_messageInfo_GetDataRequest.Size(m)
+}
+func (m *GetDataRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetDataRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetDataRequest proto.InternalMessageInfo
+
+func (m *GetDataRequest) GetData() *Query {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+type GetDataResponse struct {
+	Data                 *Data    `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetDataResponse) Reset()         { *m = GetDataResponse{} }
+func (m *GetDataResponse) String() string { return proto.CompactTextString(m) }
+func (*GetDataResponse) ProtoMessage()    {}
+func (*GetDataResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_myservice_5f76e43bfab2b76a, []int{2}
+}
+func (m *GetDataResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetDataResponse.Unmarshal(m, b)
+}
+func (m *GetDataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetDataResponse.Marshal(b, m, deterministic)
+}
+func (dst *GetDataResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetDataResponse.Merge(dst, src)
+}
+func (m *GetDataResponse) XXX_Size() int {
+	return xxx_messageInfo_GetDataResponse.Size(m)
+}
+func (m *GetDataResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetDataResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetDataResponse proto.InternalMessageInfo
+
+func (m *GetDataResponse) GetData() *Data {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+type Query struct {
+	ServerIp             string            `protobuf:"bytes,1,opt,name=server_ip,json=serverIp,proto3" json:"server_ip,omitempty"`
+	ClientIp             string            `protobuf:"bytes,2,opt,name=client_ip,json=clientIp,proto3" json:"client_ip,omitempty"`
+	Metadata             map[string]string `protobuf:"bytes,3,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
+}
+
+func (m *Query) Reset()         { *m = Query{} }
+func (m *Query) String() string { return proto.CompactTextString(m) }
+func (*Query) ProtoMessage()    {}
+func (*Query) Descriptor() ([]byte, []int) {
+	return fileDescriptor_myservice_5f76e43bfab2b76a, []int{3}
+}
+func (m *Query) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Query.Unmarshal(m, b)
+}
+func (m *Query) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Query.Marshal(b, m, deterministic)
+}
+func (dst *Query) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Query.Merge(dst, src)
+}
+func (m *Query) XXX_Size() int {
+	return xxx_messageInfo_Query.Size(m)
+}
+func (m *Query) XXX_DiscardUnknown() {
+	xxx_messageInfo_Query.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Query proto.InternalMessageInfo
+
+func (m *Query) GetServerIp() string {
 	if m != nil {
 		return m.ServerIp
 	}
 	return ""
 }
 
-func (m *AddDataRequest) GetClientIp() string {
+func (m *Query) GetClientIp() string {
 	if m != nil {
 		return m.ClientIp
 	}
 	return ""
 }
 
-func (m *AddDataRequest) GetMetadata() map[string]string {
+func (m *Query) GetMetadata() map[string]string {
 	if m != nil {
 		return m.Metadata
 	}
 	return nil
 }
 
-func (m *AddDataRequest) GetMsg() string {
+type Data struct {
+	ServerIp             string            `protobuf:"bytes,1,opt,name=server_ip,json=serverIp,proto3" json:"server_ip,omitempty"`
+	ClientIp             string            `protobuf:"bytes,2,opt,name=client_ip,json=clientIp,proto3" json:"client_ip,omitempty"`
+	Metadata             map[string]string `protobuf:"bytes,3,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Msg                  string            `protobuf:"bytes,4,opt,name=msg,proto3" json:"msg,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
+}
+
+func (m *Data) Reset()         { *m = Data{} }
+func (m *Data) String() string { return proto.CompactTextString(m) }
+func (*Data) ProtoMessage()    {}
+func (*Data) Descriptor() ([]byte, []int) {
+	return fileDescriptor_myservice_5f76e43bfab2b76a, []int{4}
+}
+func (m *Data) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Data.Unmarshal(m, b)
+}
+func (m *Data) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Data.Marshal(b, m, deterministic)
+}
+func (dst *Data) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Data.Merge(dst, src)
+}
+func (m *Data) XXX_Size() int {
+	return xxx_messageInfo_Data.Size(m)
+}
+func (m *Data) XXX_DiscardUnknown() {
+	xxx_messageInfo_Data.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Data proto.InternalMessageInfo
+
+func (m *Data) GetServerIp() string {
+	if m != nil {
+		return m.ServerIp
+	}
+	return ""
+}
+
+func (m *Data) GetClientIp() string {
+	if m != nil {
+		return m.ClientIp
+	}
+	return ""
+}
+
+func (m *Data) GetMetadata() map[string]string {
+	if m != nil {
+		return m.Metadata
+	}
+	return nil
+}
+
+func (m *Data) GetMsg() string {
 	if m != nil {
 		return m.Msg
 	}
@@ -88,7 +256,12 @@ func (m *AddDataRequest) GetMsg() string {
 
 func init() {
 	proto.RegisterType((*AddDataRequest)(nil), "myservicepb.AddDataRequest")
-	proto.RegisterMapType((map[string]string)(nil), "myservicepb.AddDataRequest.MetadataEntry")
+	proto.RegisterType((*GetDataRequest)(nil), "myservicepb.GetDataRequest")
+	proto.RegisterType((*GetDataResponse)(nil), "myservicepb.GetDataResponse")
+	proto.RegisterType((*Query)(nil), "myservicepb.Query")
+	proto.RegisterMapType((map[string]string)(nil), "myservicepb.Query.MetadataEntry")
+	proto.RegisterType((*Data)(nil), "myservicepb.Data")
+	proto.RegisterMapType((map[string]string)(nil), "myservicepb.Data.MetadataEntry")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -104,6 +277,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MyServiceClient interface {
 	AddData(ctx context.Context, in *AddDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (*GetDataResponse, error)
 }
 
 type myServiceClient struct {
@@ -123,9 +297,19 @@ func (c *myServiceClient) AddData(ctx context.Context, in *AddDataRequest, opts 
 	return out, nil
 }
 
+func (c *myServiceClient) GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (*GetDataResponse, error) {
+	out := new(GetDataResponse)
+	err := c.cc.Invoke(ctx, "/myservicepb.MyService/GetData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MyServiceServer is the server API for MyService service.
 type MyServiceServer interface {
 	AddData(context.Context, *AddDataRequest) (*empty.Empty, error)
+	GetData(context.Context, *GetDataRequest) (*GetDataResponse, error)
 }
 
 func RegisterMyServiceServer(s *grpc.Server, srv MyServiceServer) {
@@ -150,6 +334,24 @@ func _MyService_AddData_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MyService_GetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MyServiceServer).GetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/myservicepb.MyService/GetData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MyServiceServer).GetData(ctx, req.(*GetDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _MyService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "myservicepb.MyService",
 	HandlerType: (*MyServiceServer)(nil),
@@ -158,29 +360,39 @@ var _MyService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "AddData",
 			Handler:    _MyService_AddData_Handler,
 		},
+		{
+			MethodName: "GetData",
+			Handler:    _MyService_GetData_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "myservice.proto",
 }
 
-func init() { proto.RegisterFile("myservice.proto", fileDescriptor_myservice_90031cc0239956c8) }
+func init() { proto.RegisterFile("myservice.proto", fileDescriptor_myservice_5f76e43bfab2b76a) }
 
-var fileDescriptor_myservice_90031cc0239956c8 = []byte{
-	// 251 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xcf, 0xad, 0x2c, 0x4e,
-	0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x86, 0x0b, 0x14,
-	0x24, 0x49, 0x49, 0xa7, 0xe7, 0xe7, 0xa7, 0xe7, 0xa4, 0xea, 0x83, 0xa5, 0x92, 0x4a, 0xd3, 0xf4,
-	0x53, 0x73, 0x0b, 0x4a, 0x2a, 0x21, 0x2a, 0x95, 0x1e, 0x30, 0x72, 0xf1, 0x39, 0xa6, 0xa4, 0xb8,
-	0x24, 0x96, 0x24, 0x06, 0xa5, 0x16, 0x96, 0xa6, 0x16, 0x97, 0x08, 0x49, 0x73, 0x71, 0x82, 0x34,
-	0xa7, 0x16, 0xc5, 0x67, 0x16, 0x48, 0x30, 0x2a, 0x30, 0x6a, 0x70, 0x06, 0x71, 0x40, 0x04, 0x3c,
-	0x0b, 0x40, 0x92, 0xc9, 0x39, 0x99, 0xa9, 0x79, 0x25, 0x20, 0x49, 0x26, 0x88, 0x24, 0x44, 0xc0,
-	0xb3, 0x40, 0xc8, 0x95, 0x8b, 0x23, 0x37, 0xb5, 0x24, 0x31, 0x25, 0xb1, 0x24, 0x51, 0x82, 0x59,
-	0x81, 0x59, 0x83, 0xdb, 0x48, 0x53, 0x0f, 0xc9, 0x25, 0x7a, 0xa8, 0x16, 0xe9, 0xf9, 0x42, 0xd5,
-	0xba, 0xe6, 0x95, 0x14, 0x55, 0x06, 0xc1, 0xb5, 0x0a, 0x09, 0x70, 0x31, 0xe7, 0x16, 0xa7, 0x4b,
-	0xb0, 0x80, 0x4d, 0x07, 0x31, 0xa5, 0xac, 0xb9, 0x78, 0x51, 0x14, 0x83, 0x94, 0x64, 0xa7, 0x56,
-	0x42, 0x5d, 0x07, 0x62, 0x0a, 0x89, 0x70, 0xb1, 0x96, 0x25, 0xe6, 0x94, 0xa6, 0x42, 0x1d, 0x05,
-	0xe1, 0x58, 0x31, 0x59, 0x30, 0x1a, 0xf9, 0x72, 0x71, 0xfa, 0x56, 0x06, 0x43, 0x1c, 0x21, 0xe4,
-	0xc0, 0xc5, 0x0e, 0x75, 0x85, 0x90, 0x34, 0x1e, 0xb7, 0x49, 0x89, 0xe9, 0x41, 0x42, 0x4d, 0x0f,
-	0x16, 0x6a, 0x7a, 0xae, 0xa0, 0x50, 0x53, 0x62, 0x48, 0x62, 0x03, 0x8b, 0x18, 0x03, 0x02, 0x00,
-	0x00, 0xff, 0xff, 0x60, 0x07, 0xe6, 0x96, 0x75, 0x01, 0x00, 0x00,
+var fileDescriptor_myservice_5f76e43bfab2b76a = []byte{
+	// 347 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x92, 0xdf, 0x4a, 0x02, 0x41,
+	0x14, 0xc6, 0x5d, 0xff, 0xa4, 0x1e, 0x49, 0x6b, 0x88, 0x90, 0x35, 0x48, 0x16, 0x0a, 0xaf, 0x46,
+	0xb0, 0x8b, 0x24, 0xbb, 0x28, 0xc8, 0xc2, 0x0b, 0x2f, 0xb2, 0x07, 0x88, 0x55, 0x4f, 0x8b, 0xe4,
+	0xba, 0xd3, 0xce, 0xac, 0x30, 0x0f, 0xd2, 0xdb, 0xf4, 0x08, 0x3d, 0x54, 0xcc, 0xcc, 0xb6, 0x38,
+	0x59, 0x10, 0x78, 0xb7, 0x7b, 0xbe, 0xf3, 0x9d, 0xf3, 0x9d, 0xe1, 0x07, 0x8d, 0x50, 0x72, 0x8c,
+	0xd7, 0x8b, 0x19, 0x52, 0x16, 0x47, 0x22, 0x22, 0xb5, 0xac, 0xc0, 0xa6, 0x6e, 0x2b, 0x88, 0xa2,
+	0x60, 0x89, 0x5d, 0x2d, 0x4d, 0x93, 0x97, 0x2e, 0x86, 0x4c, 0x48, 0xd3, 0xe9, 0x5d, 0x42, 0xfd,
+	0x76, 0x3e, 0xbf, 0xf3, 0x85, 0x3f, 0xc1, 0xb7, 0x04, 0xb9, 0x20, 0x67, 0x50, 0x9c, 0xfb, 0xc2,
+	0x6f, 0x3a, 0x6d, 0xa7, 0x53, 0xeb, 0x1d, 0xd2, 0x8d, 0x51, 0x54, 0xf7, 0x69, 0xd9, 0xeb, 0x43,
+	0xfd, 0x01, 0xc5, 0xa6, 0xf1, 0xdc, 0x32, 0x12, 0xcb, 0xf8, 0x98, 0x60, 0x2c, 0x33, 0x67, 0x23,
+	0x73, 0x72, 0x16, 0xad, 0x38, 0xfe, 0x77, 0xe7, 0x87, 0x03, 0x25, 0x3d, 0x89, 0xb4, 0xa0, 0xaa,
+	0x3a, 0x30, 0x7e, 0x5e, 0x30, 0xed, 0xaa, 0x4e, 0x2a, 0xa6, 0x30, 0x62, 0x4a, 0x9c, 0x2d, 0x17,
+	0xb8, 0x12, 0x4a, 0xcc, 0x1b, 0xd1, 0x14, 0x46, 0x8c, 0x5c, 0x43, 0x25, 0x44, 0xe1, 0xeb, 0x75,
+	0x85, 0x76, 0xa1, 0x53, 0xeb, 0xb5, 0xb7, 0x93, 0xd2, 0x71, 0xda, 0x32, 0x5c, 0x89, 0x58, 0x4e,
+	0x32, 0x87, 0x3b, 0x80, 0x7d, 0x4b, 0x22, 0x07, 0x50, 0x78, 0x45, 0x99, 0x46, 0x50, 0x9f, 0xe4,
+	0x08, 0x4a, 0x6b, 0x7f, 0x99, 0x60, 0xba, 0xd9, 0xfc, 0x5c, 0xe5, 0xfb, 0x8e, 0xf7, 0xe9, 0x40,
+	0x51, 0x5d, 0xb3, 0x43, 0xfa, 0xc1, 0x56, 0xfa, 0xd3, 0xad, 0xc7, 0xfa, 0x2b, 0xbc, 0xca, 0x1a,
+	0xf2, 0xa0, 0x59, 0x34, 0x59, 0x43, 0x1e, 0xec, 0x74, 0x4e, 0xef, 0xdd, 0x81, 0xea, 0x58, 0x3e,
+	0x99, 0xdd, 0xe4, 0x06, 0xca, 0x29, 0x48, 0xa4, 0x65, 0x45, 0xb2, 0xf1, 0x72, 0x8f, 0xa9, 0xc1,
+	0x91, 0x7e, 0xe3, 0x48, 0x87, 0x0a, 0x47, 0x2f, 0x47, 0xee, 0xa1, 0x9c, 0x72, 0xf1, 0x63, 0x82,
+	0xcd, 0x99, 0x7b, 0xf2, 0xbb, 0x68, 0x50, 0xf2, 0x72, 0xd3, 0x3d, 0x3d, 0xf9, 0xe2, 0x2b, 0x00,
+	0x00, 0xff, 0xff, 0x2f, 0xac, 0x88, 0x22, 0x16, 0x03, 0x00, 0x00,
 }

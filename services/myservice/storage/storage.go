@@ -11,6 +11,7 @@ import (
 type Connector interface {
 	Close() error
 	AddData(serverIP, clientIP string, metadata map[string]string, msg string) error
+	GetData(serverIP, clientIP string, metadata map[string]string) (*models.Data, error)
 }
 
 type Conn struct {
@@ -30,6 +31,20 @@ func (c *Conn) AddData(serverIP, clientIP string, metadata map[string]string, ms
 	}
 
 	return c.DB.Insert(data)
+}
+
+func (c *Conn) GetData(serverIP, clientIP string, metadata map[string]string) (*models.Data, error) {
+	// mock data
+	data := &models.Data{
+		ServerIP: "211.31.180.207",
+		ClientIP: "105.230.131.7",
+		Metadata: map[string]string{
+			"mollitia": "possimus",
+		},
+		Msg: "Possimus qui corporis numquam minus eos.",
+	}
+
+	return data, nil
 }
 
 func New(conf *config.Config) (*Conn, error) {
